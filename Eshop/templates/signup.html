@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/style_signup.css' %}">
+  
+                 
+    <section class="vh-100 mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                
+    <div class="col-sm-6 text-black">
+
+<form  method="POST" style="width: 23rem;" >
+        {% csrf_token %}
+    
+    
+    
+    <!-- signup -->
+
+    <!-- first name -->
+    
+    <div class="form-group">
+    <label>First name </label>   
+    <input name="firstname" value="{{values.firstname}}" type="text" class="form-control" placeholder="">
+    </div> 
+    
+    <!-- second name -->
+    <div class="form-group mt-2">
+    <label>Last name</label>
+    <input name="lastname" value="{{values.secondname}}" type="text" class="form-control" placeholder="">
+    </div> 
+    
+    <!-- Email -->
+    <div class="form-group mt-2">
+    <label>Email address</label>
+    <input name="email"  value="{{values.Email}}" type="email" class="form-control" placeholder="example@gmail.com" required >
+    <small class="form-text text-muted">(We'll never share your email with anyone else.)</small>
+    </div> 
+
+    <!-- City -->
+    <div class="form-group mt-2">
+        <label>City</label>
+        <input  name="city" value="{{values.City}}" type="text" class="form-control" placeholder="">
+    </div> 
+
+    <!-- Phone number -->
+    <div class="form-group mt-2">
+        <label>Phone Number</label>
+        <input name="phone"  value="{{values.Phone}}" type="text" class="form-control" placeholder="">
+    </div> 
+
+    <!-- Password -->
+    <div class="form-group mt-2">
+        <label>Create Password </label>
+        <input name="password" type="password" class="form-control" placeholder="*********">
+    </div>
+        
+    <!-- Register button -->
+   <div class="form-group mt-3">
+    <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+    </div> </br>      
+            
+    <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+        
+</form>
+
+        
+<div class="border-top card-body text-center">Have an account? <a href="/login">Log In</a>
+</div>
+</div>
+
+<div class="col-sm-6 px-0 d-none d-sm-block">
+    <img src={% static 'images/signupshopping3.jpg' %} >
+    </div></div>
+    
+    
+</div></section>
+       
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+    
+   
+
+
+  
+
+
