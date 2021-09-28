@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import redirect, render,redirect
 from .models.products import Products
 from .models.category import Category
 from .models.signupcustomer import Signupcustomer
@@ -29,12 +29,66 @@ def signup(request):
         city=postdata.get('city')
         phone=postdata.get('phone')
         password=postdata.get('password')
-        print(firstname,lastname,email,city,phone,password)
-        signupcustomer=Signupcustomer(first_name=firstname,
-                                      last_name=lastname,
-                                      email=email,
-                                      city=city,
-                                      phone=phone,
-                                      password=password)
-        signupcustomer.register()
-        return HttpResponse('success')
+        
+        # validation
+        value={
+            'firstname':firstname,
+            'lastname':lastname,
+            'email':email,
+            'city':city,
+            'phone':phone
+        }
+        error_message= None
+        if (not firstname):
+            error_message="First name is required.....!!!!"
+        elif len(firstname)<3:
+            error_message="First name must me 3 character or long....!!!"
+        elif (not lastname):
+            error_message="Second name is required.....!!!!"
+        elif len(lastname)<3:
+            error_message="Second name must me 3 character or long....!!!"
+        
+        elif len(email)<3:
+            error_message="email must me 3 character or long....!!!"
+        
+        elif (not city):
+            error_message="City is required.....!!!!"
+        elif (not phone):
+            error_message="Phone number is required.....!!!!"
+        elif len(phone)<10:
+            error_message="Phone number must me 10 character....!!!"
+        elif (not password):
+            error_message="password is required.....!!!!"
+        elif len(password)<3:
+            error_message="password must me 3 character or long....!!!"
+        
+
+        
+        
+
+        
+        
+
+
+
+        # saving after validation
+        if (not error_message):
+            signupcustomer=Signupcustomer(first_name=firstname,
+                                        last_name=lastname,
+                                        email=email,
+                                        city=city,
+                                        phone=phone,
+                                        password=password)
+            signupcustomer.register()
+            return redirect('homepage')
+        else:
+            data={
+                    'error':error_message,
+                    'values':value,
+            }
+            return render(request,'signup.html',data)
+                
+
+
+def about(request):
+    return render(request,'about.html')
