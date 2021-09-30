@@ -10,3 +10,9 @@ class Signupcustomer(models.Model):
 
     def register(self):
         self.save()
+
+    def email_exsist(self):
+        if Signupcustomer.objects.filter(email=self.email):
+            return True
+
+        return False
