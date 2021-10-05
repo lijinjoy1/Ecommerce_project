@@ -11,6 +11,18 @@ class Signupcustomer(models.Model):
     def register(self):
         self.save()
 
+    @staticmethod
+    def get_customer_by_email(email):
+        try:
+            return Signupcustomer.objects.get(email=email)
+        except:
+            return False
+        
+    
+
+    
+    
+    
     def email_exsist(self):
         if Signupcustomer.objects.filter(email=self.email):
             return True
